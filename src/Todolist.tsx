@@ -1,5 +1,5 @@
-import React, {ChangeEvent, useState, KeyboardEvent} from 'react';
-import {FilterValuesType, taskTypeProps} from "./App";
+import React, {ChangeEvent} from 'react';
+import {FilterValuesType} from "./App";
 import AddItemForm from "./AddItemForm";
 import EditableSpan from "./EditableSpan";
 
@@ -45,7 +45,7 @@ export const Todolist = (props: PropsType) => {
     return (
         <div>
             <h3>
-                <EditableSpan  title={props.title} callback={changeEditSpan}/>
+                <EditableSpan   title={props.title} callback={changeEditSpan}/>
                 {/*{props.title}*/}
                 <button onClick={removetodolistHandler}>+</button>
             </h3>
@@ -72,9 +72,7 @@ export const Todolist = (props: PropsType) => {
                 </button>
                 <button className={props.filter === 'active' ? 'active-filter' : ''} onClick={activeChangeFilter}>Active
                 </button>
-                <button className={props.filter === 'completed' ? 'active-filter' : ''}
-                        onClick={completedChangeFilter}>Completed
-                </button>
+                <button className={props.filter === 'completed' ? 'active-filter' : ''} onClick={completedChangeFilter}>Completed</button>
             </div>
         </div>
     );

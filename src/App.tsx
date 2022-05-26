@@ -10,8 +10,11 @@ export type FilterValuesType = "all" | "active" | "completed"
 export type taskTypeProps = {
     id: string, title: string, isDone: boolean
 }
+export type TaskStateType ={
+    [key: string]: Array<taskTypeProps>
+}
 
-type TodolistsType = {
+export type TodolistsType = {
     id: string, title: string, filter: FilterValuesType
 }
 
@@ -24,7 +27,7 @@ function App() {
         {id: todolistID2, title: 'What to buy', filter: 'all'},
     ])
 
-    let [tasks, setTasks] = useState({
+    let [tasks, setTasks] = useState<TaskStateType>({
         [todolistID1]: [
             {id: v1(), title: 'HTML&CSS', isDone: true},
             {id: v1(), title: 'JS', isDone: true},
@@ -45,7 +48,7 @@ function App() {
         setTasks({...tasks, [newId]: []})
 
     }
-    const removeTodolist = (todolistID: string,) => {
+    const removeTodolist = (todolistID: string) => {
         console.log(todolistID)
         setTodolists(todolists.filter(e => e.id !== todolistID))
         delete tasks[todolistID]
@@ -56,7 +59,7 @@ function App() {
     const removeTask = (todolistID: string, id: string) => {
         // let filteredTask = tasks.filter(t => t.id != id)
         // setTasks(filteredTask)
-        setTasks({...tasks, [todolistID]: tasks[todolistID].filter((t) => t.id != id)})
+        setTasks({...tasks, [todolistID]: tasks[todolistID].filter((t) => t.id !== id)})
     }
 
     const addTask = (todolistID: string, title: string) => {
