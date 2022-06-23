@@ -8,24 +8,18 @@ type ActionType = {
     [key: string]: any
 }
 
-// меня вызовут и дадут мне стейт (почти всегда объект)
-// и инструкцию (action, тоже объект)
-// согласно прописанному type в этом action (инструкции) я поменяю state
+
 export const userReducer = (state: StateType, action: ActionType) => {
     switch (action.type) {
         case 'INCREMENT-AGE':
-            let copyState = {...state}
-            copyState.age = copyState.age + 1
-            return copyState
-        case 'INCREMENT-CHILDREN-COUNT':{
-            let copyState = {...state}
-            copyState.childrenCount = copyState.childrenCount + 1
-            return copyState
-        }
-        case 'CHANGE-NAME': {
-            return {...state, name: action.newName }
-        }
+            // state.age = state.age + 1;
+              return {...state, age: state.age +1};
+        case 'INCREMENT-CHILDREN-COUNT':
+            // state.childrenCount = state.childrenCount + 1;
+            return {...state, childrenCount: state.childrenCount +1}
+        case 'CHANGE-NAME':
+            return {...state, name: action.newName}
         default:
-            throw new Error('I don\'t understand this type')
+            throw new Error("I don't understand this type")
     }
 }

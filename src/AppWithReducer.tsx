@@ -14,15 +14,15 @@ export type TaskStateType ={
     [key: string]: Array<taskTypeProps>
 }
 
-export type TodolistType = {
+export type TodolistsType = {
     id: string, title: string, filter: FilterValuesType
 }
 
-function App() {
+function AppWithReducer() {
     let todolistID1 = v1()
     let todolistID2 = v1()
 
-    let [todolists, setTodolists] = useState<Array<TodolistType>>([
+    let [todolists, setTodolists] = useState<Array<TodolistsType>>([
         {id: todolistID1, title: 'What to learn', filter: 'all'},
         {id: todolistID2, title: 'What to buy', filter: 'all'},
     ])
@@ -43,12 +43,13 @@ function App() {
 
     const addTodolist = (newTitle: string) => {
         let newId = v1()
-        let newTodolist: TodolistType = {id: newId, title: newTitle, filter: 'all'}
+        let newTodolist: TodolistsType = {id: newId, title: newTitle, filter: 'all'}
         setTodolists([...todolists, newTodolist])
         setTasks({...tasks, [newId]: []})
 
     }
     const removeTodolist = (todolistID: string) => {
+        console.log(todolistID)
         setTodolists(todolists.filter(e => e.id !== todolistID))
         delete tasks[todolistID]
         setTasks({...tasks})
@@ -67,8 +68,7 @@ function App() {
         // setTask([newTask, ...tasks])
         setTasks({...tasks, [todolistID]: [newTask, ...tasks[todolistID]]})
     }
-    const editTitleSpan = (todolistID: string,newTitle: string) => {
-        console.log(editTaskSpan)
+    const changeTodolistTitle = (todolistID: string,newTitle: string) => {
         console.log('ku')
     setTodolists(todolists.map(el => el.id === todolistID ? {...el, title: newTitle}: el))
     }
@@ -116,7 +116,7 @@ function App() {
                             onChangeTaskStatus={onChangeTaskStatus}
                             filter={el.filter}
                             removetodolist={removeTodolist}
-                            editTitleSpan ={editTitleSpan}
+                            editTitleSpan ={changeTodolistTitle}
                             editTaskSpan = {editTaskSpan}
 
                         />
@@ -128,4 +128,4 @@ function App() {
     );
 }
 
-export default App;
+export default AppWithReducer;
