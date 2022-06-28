@@ -17,7 +17,7 @@ type PropsType = {
     removeTask: (todolistID: string, id: string) => void
     changeFilter: (value: FilterValuesType, todolistID: string) => void
     addTask: (todolistID: string, title: string) => void
-    onChangeTaskStatus: (todolistID: string, id: string, isDone: boolean) => void
+    onChangeTaskStatus: (id: string,  isDone: boolean, todolistID: string) => void
     filter: FilterValuesType
     removetodolist: (todolistID: string) => void
     editTitleSpan: (todolistID: string,newTitle: string)=> void
@@ -55,7 +55,7 @@ export const Todolist = (props: PropsType) => {
                 {props.tasks.map(el => {
                     const onKeyChange = (e: ChangeEvent<HTMLInputElement>) => {
                         let newStatusValue = e.currentTarget.checked
-                        props.onChangeTaskStatus(props.todolistID, el.id, newStatusValue)
+                        props.onChangeTaskStatus(el.id, newStatusValue, props.todolistID )
                     }
 
                     return (<li key={el.id}>

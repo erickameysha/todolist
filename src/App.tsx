@@ -10,7 +10,7 @@ export type FilterValuesType = "all" | "active" | "completed"
 export type taskTypeProps = {
     id: string, title: string, isDone: boolean
 }
-export type TaskStateType ={
+export type TasksStateType ={
     [key: string]: Array<taskTypeProps>
 }
 
@@ -27,7 +27,7 @@ function App() {
         {id: todolistID2, title: 'What to buy', filter: 'all'},
     ])
 
-    let [tasks, setTasks] = useState<TaskStateType>({
+    let [tasks, setTasks] = useState<TasksStateType>({
         [todolistID1]: [
             {id: v1(), title: 'HTML&CSS', isDone: true},
             {id: v1(), title: 'JS', isDone: true},
@@ -55,13 +55,13 @@ function App() {
 
     }
 
-    const removeTask = (todolistID: string, id: string) => {
+    const removeTask = ( id: string,todolistID: string,) => {
         // let filteredTask = tasks.filter(t => t.id != id)
         // setTasks(filteredTask)
         setTasks({...tasks, [todolistID]: tasks[todolistID].filter((t) => t.id !== id)})
     }
 
-    const addTask = (todolistID: string, title: string) => {
+    const addTask = ( title: string,todolistID: string) => {
         debugger
         let newTask = {id: v1(), title: title, isDone: false}
         // setTask([newTask, ...tasks])
@@ -72,13 +72,13 @@ function App() {
         console.log('ku')
     setTodolists(todolists.map(el => el.id === todolistID ? {...el, title: newTitle}: el))
     }
-  const editTaskSpan = (todolistID: string,tID: string,newTitle: string) => {
+  const editTaskSpan = (todolistID: string,newTitle: string,tID: string,) => {
         console.log('ku')
     // setTodolists(todolists.map(el => el.id === todolistID ? {...el, title: newTitle}: el))
       setTasks({...tasks, [todolistID]: tasks[todolistID].map(el => el.id === tID ? {...el, title: newTitle}: el)})
     }
 
-    const onChangeTaskStatus = (todolistID: string, id: string, isDone: boolean) => {
+    const onChangeTaskStatus = (id: string,  isDone: boolean, todolistID: string) => {
         // setTask(tasks.map(e => e.id === id ? {...e, isDone: isDone} : e))
         setTasks({...tasks, [todolistID]: tasks[todolistID].map(e => e.id === id ? {...e, isDone: isDone} : e)})
     }

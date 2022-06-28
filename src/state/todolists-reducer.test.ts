@@ -1,5 +1,5 @@
 import {
-    addTodolistAC,
+    AddTodolistAC,
     changeTodolistFilterAC,
     changeTodolistTitleAC,
     removeTodolistAC,
@@ -36,7 +36,7 @@ test('correct todolist should be added', () => {
     ]
 
     // const endState = todolistsReducer(startState, { type: 'ADD-TODOLIST', title: newTodolistTitle})
-    const endState = todolistsReducer(startState, addTodolistAC(newTodolistTitle))
+    const endState = todolistsReducer(startState, AddTodolistAC(newTodolistTitle))
 
     expect(endState.length).toBe(3);
     expect(endState[2].title).toBe(newTodolistTitle);
