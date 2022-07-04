@@ -29,9 +29,6 @@ function App() {
 
     let [tasks, setTasks] = useState<TasksStateType>({
         [todolistID1]: [
-            {id: v1(), title: 'HTML&CSS', isDone: true},
-            {id: v1(), title: 'JS', isDone: true},
-            {id: v1(), title: 'ReactJS', isDone: false},
 
         ],
         [todolistID2]: [
@@ -42,6 +39,7 @@ function App() {
 
 
     const addTodolist = (newTitle: string) => {
+        debugger
         let newId = v1()
         let newTodolist: TodolistType = {id: newId, title: newTitle, filter: 'all'}
         setTodolists([...todolists, newTodolist])
